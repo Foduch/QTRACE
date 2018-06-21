@@ -19,9 +19,18 @@ class Ui_MainWindow(object):
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
         self.listWidget.setObjectName("listWidget")
         self.verticalLayout.addWidget(self.listWidget)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.DownloadRaces = QtWidgets.QPushButton(self.centralwidget)
         self.DownloadRaces.setObjectName("DownloadRaces")
-        self.verticalLayout.addWidget(self.DownloadRaces)
+        self.horizontalLayout.addWidget(self.DownloadRaces)
+        self.set_number_butt = QtWidgets.QPushButton(self.centralwidget)
+        self.set_number_butt.setObjectName("set_number_butt")
+        self.horizontalLayout.addWidget(self.set_number_butt)
+        self.refereeing_butt = QtWidgets.QPushButton(self.centralwidget)
+        self.refereeing_butt.setObjectName("refereeing_butt")
+        self.horizontalLayout.addWidget(self.refereeing_butt)
+        self.verticalLayout.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -33,5 +42,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.DownloadRaces.setText(_translate("MainWindow", "PushButton"))
+        self.DownloadRaces.setText(_translate("MainWindow", "Загрузить гонки"))
+        self.set_number_butt.setText(_translate("MainWindow", "Выдача номеров"))
+        self.refereeing_butt.setText(_translate("MainWindow", "Судейство"))
 

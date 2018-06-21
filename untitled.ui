@@ -19,11 +19,29 @@
      <widget class="QListWidget" name="listWidget"/>
     </item>
     <item>
-     <widget class="QPushButton" name="DownloadRaces">
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="DownloadRaces">
+        <property name="text">
+         <string>Загрузить гонки</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="set_number_butt">
+        <property name="text">
+         <string>Выдача номеров</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="refereeing_butt">
+        <property name="text">
+         <string>Судейство</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

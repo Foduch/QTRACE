@@ -15,12 +15,31 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         super().__init__()
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
         self.DownloadRaces.clicked.connect(self.download_races)
+        self.set_number_butt.clicked.connect(self.show_guid)
+        self.show_races()
+        db = Database()
+        self.races=db.get_races()
+
+    def show_races(self):
+        self.listWidget.clear()
+        db = Database()
+        try:
+            self.races = db.get_races()
+        except:
+            pass
+        for race in self.races:
+            self.listWidget.addItem(str(race))
 
     def download_races(self):
-        races = api.get_races()
-        print(len(races))
-        for race in races:
-            self.listWidget.addItem(str(race))
+        self.races = api.get_races()
+        db = Database()
+        db.insert_races(self.races)
+        self.show_races()
+
+    def show_guid(self):
+        print(self.races[self.listWidget.currentRow()].get_id())
+        print(str(self.races[self.listWidget.currentRow()]))
+
 
 
 def main():
