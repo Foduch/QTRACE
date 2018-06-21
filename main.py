@@ -7,6 +7,7 @@ from classes.ClassRace import *
 from classes.ClassRacer import *
 from messages import *
 import mainwindow
+import set_number
 
 class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
     def __init__(self):
@@ -19,6 +20,7 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         self.show_races()
         db = Database()
         self.races=db.get_races()
+        self.set_number_window = None
 
     def show_races(self):
         self.listWidget.clear()
@@ -39,7 +41,24 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
     def show_guid(self):
         print(self.races[self.listWidget.currentRow()].get_id())
         print(str(self.races[self.listWidget.currentRow()]))
+        self.set_number_window = SetNumberApp()
+        self.set_number_window.race = self.races[self.listWidget.currentRow()]
+        self.set_number_window.show()
 
+class SetNumberApp(QtWidgets.QMainWindow, set_number.Ui_MainWindow):
+    def __init__(self):
+        # Это здесь нужно для доступа к переменным, методам
+        # и т.д. в файле design.py
+        super().__init__()
+        self.setupUi(self)
+        self.racers = []
+        self.race = None
+        self.download_racers_butt.clicked.connect(self.download_rasers)
+
+    def download_rasers(self):
+        self.racers = api.get_racers(self.race)
+        for racer in self.racers:
+            self.listWidget.addItem(str(racer))
 
 
 def main():
